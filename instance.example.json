@@ -1,0 +1,20 @@
+{
+  "DryRun": true,
+  "ImageId": "",
+  "KeyName": "",
+  "SecurityGroups": [
+    ""
+  ],
+  "InstanceType": "t2.large",
+  "TagSpecifications": [
+    {
+      "ResourceType": "instance",
+      "Tags": [
+        {
+          "Key": "lab",
+          "Value": "kali"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+NAME="${1}"
+DESCRIPTION="${2}"
+
+ALLOWED_CIDR="0.0.0.0/0"
+
+GROUP_ID=$(
+  aws ec2 create-security-group \
+    --group-name "${NAME}" \
+    --description "${DESCRIPTION}" \
+    --query "GroupId" \
+    --output text
+)
+
+# authorize port 22 for SSH
+aws ec2 authorize-security-group-ingress \
+  --group-id "${GROUP_ID}" \
+  --protocol tcp \
+  --port 22 \
+  --cidr "${ALLOWED_CIDR}"
+
+# authorize port 3389 for RDP
+aws ec2 authorize-security-group-ingress \
+  --group-id "${GROUP_ID}" \
+  --protocol tcp \
+  --port 3389 \
+  --cidr "${ALLOWED_CIDR}"
+
+printf "\n{\n  \"GroupId\": \"%s\"\n}\n" "${GROUP_ID}"
+

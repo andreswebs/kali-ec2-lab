@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+TAG_KEY="lab"
+TAG_VALUE="kali"
+
+FILTER_JSON="[
+  {
+    \"Name\": \"tag:${TAG_KEY}\",
+    \"Values\": [\"${TAG_VALUE}\"]
+  }
+]"
+
+aws ec2 describe-instances \
+  --filter "${FILTER_JSON}" \
+  --query "Reservations[].Instances[].PublicIpAddress" \
+  --output text

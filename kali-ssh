@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+KEY_FILE="${1}"
+IP_ADDRESS="${2}"
+USERNAME="ec2-user"
+
+ssh -i "${KEY_FILE}" "${USERNAME}@${IP_ADDRESS}"
+
