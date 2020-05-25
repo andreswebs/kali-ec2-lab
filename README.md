@@ -8,6 +8,8 @@ AWS cli installed and configured with proper credentials.
 
 An RDP client installed.
 
+A subscription to the Kali Linux official AWS AMI on the [AWS Marketplace](https://aws.amazon.com/marketplace) (search for "Kali Linux").
+
 ## Steps
 
 1. create a security group: `./create-security-group <name> <description>`
