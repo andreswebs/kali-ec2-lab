@@ -39,6 +39,8 @@ The URL for the Kali Linux AMI at the time of this writing is:
 
 ## Warning
 
+Before doing penetration testing in AWS, make sure you read the [AWS Customer Support Policy for Penetration Testing](https://aws.amazon.com/security/penetration-testing/).
+
 Remember to clean up the created resources from your AWS account after this lab.
 
 
@@ -56,7 +58,7 @@ This project is licensed under the [Unlicense](UNLICENSE.md).
 
 <https://remmina.org/>
 
-<http://aws.amazon.com/security/penetration-testing/>
+<https://aws.amazon.com/security/penetration-testing/>
 
 <https://docs.aws.amazon.com/cli/latest/>
 
