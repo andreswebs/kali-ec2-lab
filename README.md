@@ -31,7 +31,12 @@ Remember to clean up the created resources from your AWS account after this lab.
    cp instance.example.json instance.json
    ```
 
-1. set environment variables for the scripts:
+1. edit the `instance.json` file to add the property:
+
+- `ImageId`: the Kali AMI ID (from **Pre-requisites**)
+- also remove the `DryRun` property
+
+2. set environment variables for the scripts:
    ```sh
    export SECURITY_GROUP_ALLOWED_CIDR="$(curl --silent checkip.amazonaws.com)/32" 
    export SECURITY_GROUP_NAME="kali-lab"
@@ -39,20 +44,15 @@ Remember to clean up the created resources from your AWS account after this lab.
    export KEY_NAME="kali"
    ```
 
-2. create a security group:
+3. create a security group:
    ```sh
    ./create-security-group
    ```
 
-3. create a key pair:
+4. create a key pair:
    ```sh
    ./create-key-pair
    ```
-
-4. edit the `instance.json` file to add the property:
-
-- `ImageId`: the Kali AMI ID (from **Pre-requisites**)
-- also remove the `DryRun` property
 
 5. create an EC2 instance:
    ```sh
