@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -o nounset
+set -o errexit
+
 KEY_NAME="${1}"
 
 aws ec2 create-key-pair \
@@ -9,4 +12,3 @@ aws ec2 create-key-pair \
   > "${KEY_NAME}.pem"
 
 chmod 0400 "${KEY_NAME}.pem"
-

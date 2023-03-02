@@ -1,54 +1,91 @@
 # Lab: Kali linux on EC2
 
-This lab shows how to setup Kali Linux on an AWS EC2 instance and connect to it via RDP.
-
-## Prerequisites
-
-AWS cli installed and configured with proper credentials.
-
-An RDP client installed.
-
-A subscription to the Kali Linux official AWS AMI on the [AWS Marketplace](https://aws.amazon.com/marketplace) (search for "Kali Linux").
-
-## Steps
-
-1. create a security group: `./create-security-group <name> <description>`
-
-2. create a key pair: `./create-key-pair <name>`
-
-3. find the AMI id: `./list-marketplace-ami <region> <marketplace url>`
-
-3. edit the instance.json file: add the security group, key pair and AMI id
-
-4. create an EC2 instance: `./create-instance instance.json`
-
-5. find the instance ip: `./get-instance-ip`
-
-6. connect to the instance via SSH: `./kali-ssh <key file> <instance ip>`
-
-7. run the commands listed in `rdp-setup.txt`
-
-8. connect via RDP client with username and password, through the public ip
-
-Note: the default username for the Kali AMI is ec2-user
-
-## AWS Marketplace URL
-
-The URL for the Kali Linux AMI at the time of this writing is:
-
-<https://aws.amazon.com/marketplace/pp/B01M26MMTT>
-
+This lab shows how to setup Kali Linux on an AWS EC2 instance and connect to it
+via RDP.
 
 ## Warning
 
-Before doing penetration testing in AWS, make sure you read the [AWS Customer Support Policy for Penetration Testing](https://aws.amazon.com/security/penetration-testing/).
+Before going through this lab or doing any penetration testing in AWS, make sure
+you read the
+[AWS Customer Support Policy for Penetration Testing](https://aws.amazon.com/security/penetration-testing/).
 
 Remember to clean up the created resources from your AWS account after this lab.
 
+## Pre-requisites
+
+- AWS CLI installed and configured with proper credentials.
+
+- An RDP client installed.
+
+- A subscription to the Kali Linux official AWS AMI on the
+  [AWS Marketplace](https://aws.amazon.com/marketplace) (search for "Kali
+  Linux").
+
+- Go to the product subscription page in the AWS Marketplace and find the AMI
+  ID. Save it for later.
+
+## Steps
+
+0. copy the example instance configuration:
+   ```sh
+   cp instance.example.json instance.json
+   ```
+
+1. set environment variables for the scripts:
+   ```sh
+   export SECURITY_GROUP_ALLOWED_CIDR="$(curl --silent checkip.amazonaws.com)/32" 
+   export SECURITY_GROUP_NAME="kali-lab"
+   export SECURITY_GROUP_DESCRIPTION="Allow SSH and RDP traffic"
+   export KEY_NAME="kali"
+   ```
+
+2. create a security group (note the ID for later):
+   ```sh
+   ./create-security-group
+   ```
+
+3. create a key pair:
+   ```sh
+   ./create-key-pair
+   ```
+
+4. edit the `instance.json` file to add the properties:
+
+- `ImageId`: the Kali AMI ID (from **Pre-requisites**)
+- `SecurityGroups[0]`: the security group ID
+- also remove the `DryRun` property
+
+5. create an EC2 instance:
+   ```sh
+   ./create-instance
+   ```
+
+6. find the instance ip:
+   ```sh
+   export INSTANCE_IP=$(./get-instance-ip)
+   ```
+
+7. connect to the instance via SSH:
+   ```sh
+   ./kali-ssh "${INSTANCE_IP}"
+   ```
+
+8. run the commands listed in [rdp-setup.md](rdp-setup.md)
+
+9. connect via RDP client through the public ip with the username and password
+   created in the previous step
+
+## Clean Up
+
+Go to the AWS console and delete the resources created during the lab:
+
+- EC2 instance
+- SSH key pair
+- Security group
 
 ## Author
 
-**Andre Silva** [adev@disroot.org](mailto:adev@disroot.org)
+**Andre Silva** - [@andreswebs](https://github.com/andreswebs)
 
 ## License
 
@@ -68,4 +105,6 @@ This project is licensed under the [Unlicense](UNLICENSE.md).
 
 <https://serverfault.com/questions/981763/how-do-i-set-user-data-when-using-the-aws-cli-cli-input-json-argument>
 
+<https://www.onemarcfifty.com/blog/video/How-to-build-Kali-Linux-from-Debian/>
 
+<https://www.kali.org/docs/general-use/xfce-with-rdp/>

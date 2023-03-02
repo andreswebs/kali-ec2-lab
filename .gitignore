@@ -1,2 +1,3 @@
 *.pem
 instance.json
+.envrc

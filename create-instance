@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-INSTANCE_FILE="${1}"
+set -o nounset
+
+INSTANCE_FILE="${INSTANCE_FILE:-instance.json}"
 
 aws ec2 run-instances --cli-input-json "file://${INSTANCE_FILE}"
-
-

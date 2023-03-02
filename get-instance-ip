@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -o nounset
+set -o errexit
+
 TAG_KEY="lab"
 TAG_VALUE="kali"
 

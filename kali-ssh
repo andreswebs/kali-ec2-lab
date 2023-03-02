@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-KEY_FILE="${1}"
-IP_ADDRESS="${2}"
+set -o nounset
+set -o errexit
+
 USERNAME="ec2-user"
 
-ssh -i "${KEY_FILE}" "${USERNAME}@${IP_ADDRESS}"
+KEY_FILE="${KEY_FILE:-kali.pem}"
+IP_ADDRESS="${1}"
 
+ssh -i "${KEY_FILE}" "${USERNAME}@${IP_ADDRESS}"

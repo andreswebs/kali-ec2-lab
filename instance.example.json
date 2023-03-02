@@ -1,11 +1,11 @@
 {
   "DryRun": true,
   "ImageId": "",
-  "KeyName": "",
+  "KeyName": "kali",
   "SecurityGroups": [
     ""
   ],
-  "InstanceType": "t2.large",
+  "InstanceType": "t3a.large",
   "TagSpecifications": [
     {
       "ResourceType": "instance",
