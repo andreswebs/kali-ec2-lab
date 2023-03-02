@@ -28,7 +28,7 @@ Remember to clean up the created resources from your AWS account after this lab.
 
 0. copy the example instance configuration:
    ```sh
-   q
+   cp instance.example.json instance.json
    ```
 
 1. set environment variables for the scripts:
