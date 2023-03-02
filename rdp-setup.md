@@ -1,24 +1,23 @@
 # add a non-root user with `sudo` permissions
 
 ```sh
-sudo addgroup --gid 2000 kali
+sudo addgroup --gid 2000 ec2-user
 sudo adduser \
     --gid 2000 \
     --uid 2000 \
     --gecos "" \
     --disabled-login \
-    kali
-sudo usermod -a -G sudo kali
-sudo passwd kali
+    ec2-user
+sudo usermod -a -G sudo ec2-user
+sudo passwd ec2-user
 ```
 
 # install desktop
 
 ```sh
-sudo apt update
 sudo apt install --yes kali-desktop-xfce
 
-echo xfce4-session | sudo tee /home/kali/.xsession
+echo xfce4-session | sudo tee /home/ec2-user/.xsession
 
 cat <<EOF | sudo tee /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla
 [Allow Colord all Users]

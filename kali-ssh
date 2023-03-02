@@ -3,7 +3,7 @@
 set -o nounset
 set -o errexit
 
-USERNAME="ec2-user"
+USERNAME="kali"
 
 KEY_FILE="${KEY_FILE:-kali.pem}"
 IP_ADDRESS="${1}"

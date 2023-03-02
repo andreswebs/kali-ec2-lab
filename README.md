@@ -39,7 +39,7 @@ Remember to clean up the created resources from your AWS account after this lab.
    export KEY_NAME="kali"
    ```
 
-2. create a security group (note the ID for later):
+2. create a security group:
    ```sh
    ./create-security-group
    ```
@@ -49,10 +49,9 @@ Remember to clean up the created resources from your AWS account after this lab.
    ./create-key-pair
    ```
 
-4. edit the `instance.json` file to add the properties:
+4. edit the `instance.json` file to add the property:
 
 - `ImageId`: the Kali AMI ID (from **Pre-requisites**)
-- `SecurityGroups[0]`: the security group ID
 - also remove the `DryRun` property
 
 5. create an EC2 instance:
@@ -70,10 +69,21 @@ Remember to clean up the created resources from your AWS account after this lab.
    ./kali-ssh "${INSTANCE_IP}"
    ```
 
-8. run the commands listed in [rdp-setup.md](rdp-setup.md)
+8. install a kali metapackage to get some tools:
+   ```sh
+   sudo apt install --yes kali-linux-headless
+   ```
 
-9. connect via RDP client through the public ip with the username and password
-   created in the previous step
+9. run the commands listed in [rdp-setup.md](rdp-setup.md)
+
+10. connect via RDP client through the public ip with the username and password
+    created in the previous step
+
+## Next Steps
+
+Set up some vulnerable infrastructure to test against !
+
+Check out, for example, [AWSGoat](https://github.com/ine-labs/AWSGoat).
 
 ## Clean Up
 
@@ -93,11 +103,11 @@ This project is licensed under the [Unlicense](UNLICENSE.md).
 
 ## References
 
+<https://aws.amazon.com/security/penetration-testing/>
+
 <https://www.kali.org/>
 
 <https://remmina.org/>
-
-<https://aws.amazon.com/security/penetration-testing/>
 
 <https://docs.aws.amazon.com/cli/latest/>
 
@@ -107,4 +117,8 @@ This project is licensed under the [Unlicense](UNLICENSE.md).
 
 <https://www.onemarcfifty.com/blog/video/How-to-build-Kali-Linux-from-Debian/>
 
+<https://www.kali.org/docs/cloud/aws/>
+
 <https://www.kali.org/docs/general-use/xfce-with-rdp/>
+
+<https://github.com/ine-labs/AWSGoat>

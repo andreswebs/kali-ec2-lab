@@ -13,6 +13,10 @@
         {
           "Key": "lab",
           "Value": "kali"
+        },
+        {
+          "Key": "Name",
+          "Value": "kali"
         }
       ]
     }
