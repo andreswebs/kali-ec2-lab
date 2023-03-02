@@ -3,7 +3,7 @@
 set -o nounset
 set -o errexit
 
-KEY_NAME="${1}"
+KEY_NAME="${KEY_NAME:-kali}"
 
 aws ec2 create-key-pair \
   --key-name "${KEY_NAME}" \
