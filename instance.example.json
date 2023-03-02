@@ -3,7 +3,7 @@
   "ImageId": "",
   "KeyName": "kali",
   "SecurityGroups": [
-    ""
+    "kali-lab"
   ],
   "InstanceType": "t3a.large",
   "TagSpecifications": [
